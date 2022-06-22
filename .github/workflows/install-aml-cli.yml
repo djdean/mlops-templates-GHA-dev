@@ -1,0 +1,17 @@
+name: install_aml_cli
+on: 
+  workflow_call:
+    secrets:
+      creds:
+        required: true
+jobs:
+  install-extension:    
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.creds}}
+          enable-AzPSSession: true 
+      - name: install-extension
+        run:  az extension add -n ml -y
