@@ -26,12 +26,10 @@ on:
         description: 'cluster_tier'     
         required: true
         type: string
-    secrets:
-      creds:
-        required: true
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
+runs-on: ubuntu-latest
   create-compute:
     runs-on: ubuntu-latest
     steps:
@@ -42,4 +40,5 @@ jobs:
           enable-AzPSSession: true 
       - name: install-extension
         run:  az extension add -n ml -y
-      - name: list-models
+  secrets:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
