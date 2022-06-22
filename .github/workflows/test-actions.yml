@@ -1,0 +1,18 @@
+name: workflow-test
+
+on: 
+  workflow_dispatch:
+    inputs:
+      resourceGroup:
+        description: 'Resource Group'     
+        required: true
+        default: ''
+      workspace:
+        description: 'Workspace Name'     
+        required: true
+        default: ''
+jobs:
+    install-cli:
+      uses: ./.github/workflows/install-aml-cli.yml
+      secrets:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
