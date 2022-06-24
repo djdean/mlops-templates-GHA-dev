@@ -12,6 +12,9 @@ on:
       workspace_name:
         required: true
         type: string
+      name: 
+        required: true
+        type: string
     secrets:
       creds:
         required: true
@@ -33,5 +36,5 @@ jobs:
       - name: create-environment-from-file
         run: |
           az ml dataset create --file ${{ github.workspace }}/files/${{ inputs.data_file }} --resource-group ${{ inputs.resource_group }} \
-          --workspace-name ${{ inputs.workspace_name }}
+          --workspace-name ${{ inputs.workspace_name }} --name ${{ inputs.name }}
   
