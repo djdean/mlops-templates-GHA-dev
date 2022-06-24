@@ -15,7 +15,7 @@ jobs:
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     run-environment-test:
-      uses: ./.github/workflows/register-environment.yml
+      uses: ./.github/workflows/register_environment.yml
       with:
         resource_group: DJMiscRG
         workspace_name: DemoMLWorkspace
