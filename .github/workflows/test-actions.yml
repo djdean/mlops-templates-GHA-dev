@@ -14,6 +14,12 @@ jobs:
         workspace_name: DemoMLWorkspace
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
+    run-environment-test:
+      uses: ./.github/workflows/register-dataset.yml
+      with:
+        environment_file: ${{ github.workspace }}/files/environment.yml
+      secrets:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
         
       
         
