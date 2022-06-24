@@ -9,5 +9,6 @@ jobs:
         resource_group: DJMiscRG
         workspace_name: DemoMLWorkspace
         environment_file: data.yml
+        name: demo_test
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
