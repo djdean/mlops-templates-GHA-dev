@@ -1,8 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: create-compute
 
-# Controls when the workflow will run
 on: 
   workflow_call:
     inputs:
@@ -26,22 +23,10 @@ on:
         description: 'cluster_tier'     
         required: true
         type: string
-    secrets:
-      creds:
-        required: true
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   create-compute:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: 'Az CLI login'
-        uses: azure/login@v1
-        with:
-          creds: ${{secrets.creds}}
-          enable-AzPSSession: true 
-      - name: install-extension
-        uses: ./.github/workflows/install-aml-cli.yml
+      - name: test
+        run: echo ${{inputs.cluster_name}} ${{inputs.size}} ${{inputs.min_instances}} ${{inputs.max_instances}} ${{inputs.cluster_tier}} 
   
