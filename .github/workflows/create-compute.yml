@@ -38,7 +38,7 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          creds: ${{secrets.AZURE_CREDENTIALS}}
+          creds: ${{secrets.creds}}
           enable-AzPSSession: true 
       - name: install-extension
         uses: ./.github/workflows/install-aml-cli.yml
