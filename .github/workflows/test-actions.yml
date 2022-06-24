@@ -22,16 +22,8 @@ jobs:
           with:
             creds: ${{secrets.AZURE_CREDENTIALS}}
             enable-AzPSSession: true 
-    run-test-2:
-       needs:  run-test-1
-       runs-on: ubuntu-latest
-       steps:
         - name: install-extension
           uses: ./.github/workflows/install-aml-cli.yml
-    run-test-3:
-        needs:  run-test-2
-        runs-on: ubuntu-latest
-        steps:
         - name: install-compute
           uses: ./.github/workflows/create-compute.yml
           with:
