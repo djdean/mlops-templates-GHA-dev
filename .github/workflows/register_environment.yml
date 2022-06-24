@@ -1,4 +1,4 @@
-name: register-dataset
+name: register-environment
 
 on: 
   workflow_call:
