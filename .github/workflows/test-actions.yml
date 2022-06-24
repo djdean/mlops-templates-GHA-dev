@@ -22,15 +22,17 @@ jobs:
           with:
             creds: ${{secrets.AZURE_CREDENTIALS}}
             enable-AzPSSession: true 
-        - name: install-extension
-          uses: ./.github/workflows/install-aml-cli.yml
-        - name: install-compute
-          uses: ./.github/workflows/create-compute.yml
-          with:
-            cluster_name: test
-            size: 1
-            min_instances: 1
-            max_instances: 1
-            cluster_tier: test
+    run-test-2:
+      needs: run-test-1
+      uses: ./.github/workflows/install-aml-cli.yml
+    run-test-3:
+      needs: run-test-2
+      uses: ./.github/workflows/create-compute.yml
+      with:
+        cluster_name: test
+        size: 1
+        min_instances: 1
+        max_instances: 1
+        cluster_tier: test
       
         
