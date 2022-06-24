@@ -12,7 +12,14 @@ on:
         required: false
         default: ''
 jobs:
-    install-cli:
-      uses: ./.github/workflows/install-aml-cli.yml
+    run-test:
+      uses: ./.github/workflows/create-compute.yml
+      with:
+        cluster_name: test
+        size: 1
+        min_instances: 1
+        max_instances: 1
+        cluster_tier: test
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
+        
