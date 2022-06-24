@@ -23,10 +23,25 @@ on:
         description: 'cluster_tier'     
         required: true
         type: string
+      resource_group:
+        description: 'cluster_tier'     
+        required: true
+        type: string
+      workspace:
+        description: 'cluster_tier'     
+        required: true
+        type: string
 jobs:
   create-compute:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: echo ${{inputs.cluster_name}} ${{inputs.size}} ${{inputs.min_instances}} ${{inputs.max_instances}} ${{inputs.cluster_tier}} 
+        run: az ml compute create --name ${{ inputs.cluster_name }} \
+                                  --type amlcompute \
+                                  --size ${{ inputs.size }} \
+                                  --min-instances ${{ inputs.min_instances }} \
+                                  --max-instances ${{ inputs.max_instances }} \
+                                  --tier ${{ inputs.cluster_tier }} \
+                                  --resource-group ${{ inputs.resource_group }} \
+                                  --workspace-name ${{ inputs.workspace }}
   
