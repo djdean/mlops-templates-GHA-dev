@@ -2,31 +2,8 @@ name: workflow-test
 
 on: 
   workflow_dispatch:
-    inputs:
-      resourceGroup:
-        description: 'Resource Group'     
-        required: false
-        default: ''
-      workspace:
-        description: 'Workspace Name'     
-        required: false
-        default: ''
 jobs:
-    run-test-1:
-      runs-on: ubuntu-latest
-      steps:
-        - name: checkout
-          uses: actions/checkout@v2
-        - name: 'Az CLI login'
-          uses: azure/login@v1
-          with:
-            creds: ${{secrets.AZURE_CREDENTIALS}}
-            enable-AzPSSession: true 
-    run-test-2:
-      needs: run-test-1
-      uses: ./.github/workflows/install-aml-cli.yml
-    run-test-3:
-      needs: run-test-2
+    run-compute-test:
       uses: ./.github/workflows/create-compute.yml
       with:
         cluster_name: test
@@ -35,6 +12,8 @@ jobs:
         max_instances: 1
         resource_group: DJMiscRG
         workspace_name: DemoMLWorkspace
+      secrets:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
         
       
         
