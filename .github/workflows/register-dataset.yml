@@ -3,7 +3,7 @@ name: register-dataset
 on: 
   workflow_call:
     inputs:
-      environment_file:
+      data_file:
         required: true
         type: string
       resource_group:
@@ -32,6 +32,6 @@ jobs:
         run: az extension update -n ml
       - name: create-environment-from-file
         run: |
-          az ml environment create --file ${{ github.workspace }}/files/${{ inputs.environment_file }} --resource-group ${{ inputs.resource_group }} \
-                                  --workspace-name ${{ inputs.workspace_name }}
+          az ml dataset create --file ${{ github.workspace }}/files/${{ inputs.data_file }} --resource-group ${{ inputs.resource_group }} \
+          --workspace-name ${{ inputs.workspace_name }}
   
