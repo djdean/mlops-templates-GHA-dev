@@ -8,16 +8,13 @@ on:
         type: string
       size:  
         required: true
-        type: number
+        type: string
       min_instances: 
         required: true
         type: number
       max_instances: 
         required: true
         type: number
-      cluster_tier:
-        required: true
-        type: string
       resource_group:   
         required: true
         type: string
@@ -30,11 +27,10 @@ jobs:
     steps:
       - name: test
         run: az ml compute create --name ${{ inputs.cluster_name }} \
-                                  --type amlcompute \
+                                  --type AmlCompute \
                                   --size ${{ inputs.size }} \
                                   --min-instances ${{ inputs.min_instances }} \
                                   --max-instances ${{ inputs.max_instances }} \
-                                  --tier ${{ inputs.cluster_tier }} \
                                   --resource-group ${{ inputs.resource_group }} \
                                   --workspace-name ${{ inputs.workspace }}
   
