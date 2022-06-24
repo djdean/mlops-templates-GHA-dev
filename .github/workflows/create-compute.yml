@@ -35,6 +35,8 @@ jobs:
   create-compute:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
