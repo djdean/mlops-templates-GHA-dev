@@ -4,31 +4,24 @@ on:
   workflow_call:
     inputs:
       cluster_name:
-        description: 'Cluster name'     
         required: true
         type: string
-      size:
-        description: 'size'     
+      size:  
         required: true
         type: number
-      min_instances:
-        description: 'min_instances'     
+      min_instances: 
         required: true
         type: number
-      max_instances:
-        description: 'max_instances'     
+      max_instances: 
         required: true
         type: number
       cluster_tier:
-        description: 'cluster_tier'     
         required: true
         type: string
-      resource_group:
-        description: 'cluster_tier'     
+      resource_group:   
         required: true
         type: string
-      workspace:
-        description: 'cluster_tier'     
+      workspace_name:  
         required: true
         type: string
 jobs:
