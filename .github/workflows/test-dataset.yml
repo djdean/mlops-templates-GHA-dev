@@ -3,7 +3,7 @@ name: dataset-only-test
 on: 
   workflow_dispatch:
 jobs:
-    run-environment-test:
+    run-dataset-test:
       uses: ./.github/workflows/register-dataset.yml
       with:
         resource_group: DJMiscRG
