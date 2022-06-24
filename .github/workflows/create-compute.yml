@@ -26,6 +26,9 @@ on:
         description: 'cluster_tier'     
         required: true
         type: string
+    secrets:
+      creds:
+        required: true
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
