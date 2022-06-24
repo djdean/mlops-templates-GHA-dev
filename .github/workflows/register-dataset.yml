@@ -6,6 +6,12 @@ on:
       environment_file:
         required: true
         type: string
+      resource_group:
+        required: true
+        type: string
+      workspace_name:
+        required: true
+        type: string
     secrets:
       creds:
         required: true
@@ -25,5 +31,7 @@ jobs:
       - name: update-extension
         run: az extension update -n ml
       - name: create-environment-from-file
-        run: az ml environment create --file ${{ inputs.environment_file }}
+        run: |
+          az ml environment create --file ${{ inputs.environment_file }} --resource-group ${{ inputs.resource_group }} \
+                                  --workspace-name ${{ inputs.workspace_name }}
   
