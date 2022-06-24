@@ -45,5 +45,5 @@ jobs:
                                   --min-instances ${{ inputs.min_instances }} \
                                   --max-instances ${{ inputs.max_instances }} \
                                   --resource-group ${{ inputs.resource_group }} \
-                                  --workspace-name ${{ inputs.workspace }}
+                                  --workspace-name ${{ inputs.workspace_name }}
   
