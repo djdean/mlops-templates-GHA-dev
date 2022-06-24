@@ -30,9 +30,11 @@ jobs:
       uses: ./.github/workflows/create-compute.yml
       with:
         cluster_name: test
-        size: 1
+        size: Standard_D1_v2
         min_instances: 1
         max_instances: 1
-        cluster_tier: test
+        resource_group: DJMiscRG
+        workspace_name: DemoMLWorkspace
+        
       
         
