@@ -29,16 +29,14 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-runs-on: ubuntu-latest
   create-compute:
     runs-on: ubuntu-latest
     steps:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          creds: ${{secrets.creds}}
+          creds: ${{secrets.AZURE_CREDENTIALS}}
           enable-AzPSSession: true 
       - name: install-extension
-        run:  az extension add -n ml -y
-  secrets:
-        creds: ${{secrets.AZURE_CREDENTIALS}}
+        uses: ./.github/workflows/install-aml-cli.yml
+  
