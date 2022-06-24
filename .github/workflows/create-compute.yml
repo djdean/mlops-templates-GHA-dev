@@ -38,7 +38,8 @@ jobs:
       - name: update-extension
         run: az extension update -n ml
       - name: create-compute
-        run: az ml compute create --name ${{ inputs.cluster_name }} \
+        run: |
+          az ml compute create --name ${{ inputs.cluster_name }} \
                                   --type AmlCompute \
                                   --size ${{ inputs.size }} \
                                   --min-instances ${{ inputs.min_instances }} \
