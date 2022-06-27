@@ -13,6 +13,6 @@ on:
         default: ''
 jobs:
     install-cli:
-      uses: ./.github/workflows/install-aml-cli.yml
+      uses: ./.github/workflows/connect-to-workspace.yml
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
