@@ -6,7 +6,7 @@ jobs:
     run-workflow-test-2:
       uses: ./.github/workflows/connect-to-workspace.yml
       with:
-        resource_group: DJMiscRG
-        workspace_name: DemoMLWorkspace
+        resourceGroup: DJMiscRG
+        workspace: DemoMLWorkspace
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
