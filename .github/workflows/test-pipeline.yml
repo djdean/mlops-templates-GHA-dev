@@ -8,7 +8,7 @@ jobs:
       with:
         resource_group: DJMiscRG
         workspace_name: DemoMLWorkspace
-        parameters-file: data.yml
+        parameters-file: pipeline.yml
         job-name: demo_test
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
