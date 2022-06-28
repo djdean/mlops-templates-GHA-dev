@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 jobs:
     run-workflow-test-2:
-      uses: timwferro/TestExternalAction/blob/main/.github/workflows/list-aml-workspace.yml@main
+      uses: timwferro/TestExternalAction/.github/workflows/list-aml-workspace.yml@main
       with:
         resourceGroup: DJMiscRG
         workspace: DemoMLWorkspace
