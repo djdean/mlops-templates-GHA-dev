@@ -1,0 +1,15 @@
+name: endpoint-only-test
+
+on: 
+  workflow_dispatch:
+jobs:
+    run-endpoint-test:
+      uses: ./.github/workflows/create-endpoint.yml
+      with:
+        resource_group: DJMiscRG
+        workspace_name: DemoMLWorkspace
+        endpoint_file: endpoint.yml
+        endpoint_name: demo_test
+        endpoint_type: test
+      secrets:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
