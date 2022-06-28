@@ -1,0 +1,14 @@
+name: dataset-only-test
+
+on: 
+  workflow_dispatch:
+jobs:
+    run-dataset-test:
+      uses: ./.github/workflows/register-dataset.yml
+      with:
+        resource_group: DJMiscRG
+        workspace_name: DemoMLWorkspace
+        data_file: data.yml
+        name: demo_test
+      secrets:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
