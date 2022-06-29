@@ -1,0 +1,16 @@
+name: deployment-only-test
+
+on: 
+  workflow_dispatch:
+jobs:
+    run-deployment-test:
+      uses: ./.github/workflows/create-deployment.yml
+      with:
+        resource_group: DJMiscRG
+        workspace_name: DemoMLWorkspace
+        endpoint_file: deployment.yml
+        endpoint_name: eptest
+        endpoint_type: batch
+        deployment_name: eptestdeploy
+      secrets:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
