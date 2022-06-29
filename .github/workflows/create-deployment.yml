@@ -1,4 +1,4 @@
-name: create-endpoint
+name: create-deployment
 
 on: 
   workflow_call:
@@ -25,7 +25,7 @@ on:
       creds:
         required: true
 jobs:
-  create-endpoint:
+  create-deployment:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -39,7 +39,7 @@ jobs:
         run:  az extension add -n ml -y
       - name: update-extension
         run: az extension update -n ml
-      - name: create-environment-from-file
+      - name: create-batch-deployment
         run: |
           az ml ${{ inputs.endpoint_type }}-deployment create --name ${{ inputs.deployment_name }} --endpoint ${{ inputs.endpoint_name }} \
           -f ${{ github.workspace }}/files/${{ inputs.endpoint_file }} --resource-group ${{ inputs.resource_group }} \
