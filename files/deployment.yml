@@ -1,5 +1,5 @@
 $schema: https://azuremlschemas.azureedge.net/latest/batchDeployment.schema.json
 name: mlflowdp
 endpoint_name: mybatchedp
-model: 
+model: azureml:worst_regression:8
 compute: azureml:test
