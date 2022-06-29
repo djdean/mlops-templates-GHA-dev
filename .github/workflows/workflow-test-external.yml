@@ -6,7 +6,7 @@ jobs:
     run-workflow-test-2:
       uses: timwferro/TestExternalAction/.github/workflows/create-endpoint.yml@main
       with:
-        resourceGroup: DJMiscRG
-        workspace: DemoMLWorkspace
+        resource_group: DJMiscRG
+        workspace_name: DemoMLWorkspace
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
