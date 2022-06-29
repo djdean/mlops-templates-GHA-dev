@@ -8,5 +8,8 @@ jobs:
       with:
         resource_group: DJMiscRG
         workspace_name: DemoMLWorkspace
+        endpoint_file: endpoint.yml
+        endpoint_name: eptest
+        endpoint_type: batch
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
