@@ -11,7 +11,8 @@ try {
     }
     console.log(data);
     const configYaml = yaml.load(data, 'utf8');
-    core.setOutput("test", configYaml["variables"]["resource_group"]);
+    core.setOutput("resource_group", configYaml["variables"]["resource_group"]);
+    core.setOutput("aml_workspace", configYaml["variables"]["aml_workspace"]);
   });
   
 } catch (error) {
