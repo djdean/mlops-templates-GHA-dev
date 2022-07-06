@@ -1,0 +1,13 @@
+name: test-register-environment-external
+
+on: 
+  workflow_dispatch:
+jobs:
+    run-environment-test:
+      uses: timwferro/TestExternalAction/.github/workflows/register_environment.yml@main
+      with:
+        resource_group: DJMiscRG
+        workspace_name: DemoMLWorkspace
+        environment_file: environment.yml
+      secrets:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
