@@ -1,0 +1,17 @@
+name: test-read
+
+on: 
+  workflow_dispatch:
+jobs:
+    call-test:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checking out repo
+            uses: actions/checkout@v2
+          - name: Read test
+            uses: ./ # Uses an action in the root directory
+            id: test
+            with:
+              config: ${{ github.workspace }}/files/config-infra-prod-test.yml
+          - name: Echo step output
+            run: echo "${{  steps.test.outputs.test }}"
