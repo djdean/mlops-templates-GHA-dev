@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const yaml = require('js-yaml');
+const fs = require('fs');
 try {  
     const configData = core.getInput('config');
     fs.readFile(configData, 'utf8', (err, data) => {
