@@ -6,8 +6,10 @@ inputs:
     required: true
     default: ''
 outputs:
-  test:
-    description: 'The example param'
+  resource_group:
+    description: 'The resource group the AML workspace is in'
+  aml_workspace:
+    description: 'The resource group the AML workspace is in'
 runs:
   using: 'node16'
   main: 'index.js'
