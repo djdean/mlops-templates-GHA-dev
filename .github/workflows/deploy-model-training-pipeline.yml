@@ -6,8 +6,8 @@ jobs:
   get-config:
     runs-on: ubuntu-latest
     outputs:
-      resource_group: ${{  steps.test.outputs.resource_group }}
-      aml_workspace: ${{  steps.test.outputs.aml_workspace }}
+      resource_group: ${{  steps.config-data.outputs.resource_group }}
+      aml_workspace: ${{  steps.config-data.outputs.aml_workspace }}
     steps:
     - name: checkout
       uses: actions/checkout@v2
