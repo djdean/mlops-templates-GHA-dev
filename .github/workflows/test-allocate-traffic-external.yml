@@ -1,4 +1,4 @@
-name: allocate-only-test
+name: test-allocate-traffic-external
 
 on: 
   workflow_dispatch:
