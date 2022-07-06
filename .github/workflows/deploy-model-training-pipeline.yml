@@ -1,0 +1,28 @@
+name: test-deploy-model
+
+on: 
+  workflow_dispatch:
+jobs:
+  get-config:
+    runs-on: ubuntu-latest
+    outputs:
+      resource_group: ${{  steps.test.outputs.resource_group }}
+      aml_workspace: ${{  steps.test.outputs.aml_workspace }}
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: Read test
+      uses: ./ # Uses an action in the root directory
+      id: config-data
+      with:
+        config: ${{ github.workspace }}/files/config-infra-prod-test.yml
+    - name: Echo step output
+      run: echo " Loaded config! \n Resource Group ${{  steps.config-data.outputs.resource_group }} \n AML Workspace ${{  steps.config-data.outputs.aml_workspace }}\n"
+  list-models:
+      needs: get-config
+      uses: ./.github/workflows/connect-to-workspace.yml
+      with:
+        resourceGroup: ${{ needs.get-config.outputs.resource_group }}
+        workspace: ${{ needs.get-config.outputs.aml_workspace }}     
+      secrets:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
