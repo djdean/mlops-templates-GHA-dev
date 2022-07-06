@@ -12,6 +12,9 @@ on:
       workspace_name:
         required: true
         type: string
+      conda_file:
+        required: true
+        type: string
     secrets:
       creds:
         required: true
@@ -33,4 +36,4 @@ jobs:
       - name: create-environment-from-file
         run: |
           az ml environment create --file ${{ github.workspace }}/files/${{ inputs.environment_file }} --resource-group ${{ inputs.resource_group }} \
-                                  --workspace-name ${{ inputs.workspace_name }}
+                                  --workspace-name ${{ inputs.workspace_name }} --conda-file ${{ github.workspace }}/data-science/environment/${{ inputs.conda_file }}
