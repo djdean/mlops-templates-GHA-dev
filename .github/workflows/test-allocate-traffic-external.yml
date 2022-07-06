@@ -1,0 +1,14 @@
+name: allocate-only-test
+
+on: 
+  workflow_dispatch:
+jobs:
+    run-dataset-test:
+      uses: timwferro/TestExternalAction/.github/workflows/allocate-traffic.yml@main
+      with:
+        resource_group: DJMiscRG
+        workspace_name: DemoMLWorkspace
+        traffic_allocation: testdep=100
+        endpoint_name: onlineeptest
+      secrets:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
