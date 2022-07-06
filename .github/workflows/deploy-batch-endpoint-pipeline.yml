@@ -20,7 +20,7 @@ jobs:
       run: echo " Loaded config! \n Resource Group ${{  steps.config-data.outputs.resource_group }} \n AML Workspace ${{  steps.config-data.outputs.aml_workspace }}\n"
   create-compute:
       needs: get-config
-      uses: ./.github/workflows/register-environment.yml
+      uses: ./.github/workflows/create-compute.yml
       with:
         cluster_name: batch-cluster
         size: STANDARD_DS3_V2
