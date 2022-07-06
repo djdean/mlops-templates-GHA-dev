@@ -9,6 +9,7 @@ try {
       return;
     }
   const configYaml = yaml.load(configData, 'utf8');
+  console.log(configYaml);
   core.setOutput("test", configYaml["variables"]["resource_group"]);
 } catch (error) {
   core.setFailed(error.message);
