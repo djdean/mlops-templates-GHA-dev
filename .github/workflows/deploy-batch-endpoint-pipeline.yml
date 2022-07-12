@@ -4,20 +4,9 @@ on:
   workflow_dispatch:
 jobs:
   get-config:
-    runs-on: ubuntu-latest
-    outputs:
-      resource_group: ${{  steps.config-data.outputs.resource_group }}
-      aml_workspace: ${{  steps.config-data.outputs.aml_workspace }}
-    steps:
-    - name: checkout
-      uses: actions/checkout@v2
-    - name: Read test
-      uses: ./ # Uses an action in the root directory
-      id: config-data
+      uses: timwferro/TestExternalAction/.github/workflows/read-yaml.yml@main
       with:
-        config: ${{ github.workspace }}/files/config-infra-prod-test.yml
-    - name: Echo step output
-      run: echo " Loaded config! \n Resource Group ${{  steps.config-data.outputs.resource_group }} \n AML Workspace ${{  steps.config-data.outputs.aml_workspace }}\n"
+        file_name: config-infra-prod-test.yml
   create-compute:
       needs: get-config
       uses: ./.github/workflows/create-compute.yml
