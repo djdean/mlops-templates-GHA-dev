@@ -13,6 +13,12 @@ outputs:
   predictions:
   score_report:
   deploy_flag:
+  
+settings:
+  default_datastore: azureml:workspaceblobstore
+  default_compute: azureml:cpu-cluster
+  continue_on_step_failure: false
+  
 jobs:
   hello_job:
     command: echo "hello" && echo "world" > ${{outputs.world_output}}/world.txt
