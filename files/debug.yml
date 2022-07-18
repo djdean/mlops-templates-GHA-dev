@@ -32,7 +32,6 @@ jobs:
       python prep.py 
       --raw_data ${{inputs.raw_data}} 
       --prepared_data ${{outputs.prepared_data}}
-    environment: azureml:taxi-train-env@latest
     inputs:
       raw_data: ${{parent.inputs.input}}
     outputs:
