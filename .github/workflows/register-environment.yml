@@ -33,6 +33,8 @@ jobs:
         run:  az extension add -n ml -y
       - name: update-extension
         run: az extension update -n ml
+      - name: list-extentions
+        run: az extension list
       - name: create-environment-from-file
         run: |
           az ml environment create --file ${{ github.workspace }}/files/${{ inputs.environment_file }} --resource-group ${{ inputs.resource_group }} \
