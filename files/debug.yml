@@ -20,15 +20,16 @@ settings:
   continue_on_step_failure: false
   
 jobs:
-  hello_job:
-    command: echo "hello" && echo "world" > ${{outputs.world_output}}/world.txt
-    environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-    compute: azureml:test
-    outputs:
-      world_output:
-  world_job:
-    command: cat ${{inputs.world_input}}/world.txt
-    environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu:23
-    compute: azureml:test
+  prep_data:
+    name: prep_data
+    display_name: prep-data
+    code: ../data-science/src
+    command: >-
+      python prep.py 
+      --raw_data ${{inputs.raw_data}} 
+      --prepared_data ${{outputs.prepared_data}}
+    environment: azureml:taxi-train-env@latest
     inputs:
-      world_input: ${{parent.jobs.hello_job.outputs.world_output}}
+      raw_data: ${{parent.inputs.input}}
+    outputs:
+      prepared_data: ${{parent.outputs.prepared_data}}
