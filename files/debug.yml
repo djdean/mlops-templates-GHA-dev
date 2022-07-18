@@ -1,32 +1,16 @@
 $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
 type: pipeline
-experiment_name: taxi-fare-training
-description: Training Pipeline to train a model that predicts taxi fare price
-
-inputs:
-  input: #using local data, will crate an anonymous data asset
-    type: uri_folder
-    path: ../../../data/
-
-outputs: 
-  prepared_data:
-  trained_model:
-  predictions:
-  score_report:
-  deploy_flag:
-
-settings:
-  default_datastore: azureml:workspaceblobstore
-  default_compute: azureml:cpu-cluster
-  continue_on_step_failure: false
-
+display_name: hello_pipeline_io
 jobs:
-  prep_data:
-    name: prep_data
-    display_name: prep-data
-    code: ../../../data-science/src
-    command: echo "Test"
-    inputs:
-      raw_data: ${{parent.inputs.input}}
+  hello_job:
+    command: echo "hello" && echo "world" > ${{outputs.world_output}}/world.txt
+    environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
+    compute: azureml:cpu-cluster
     outputs:
-      prepared_data: ${{parent.outputs.prepared_data}}
+      world_output:
+  world_job:
+    command: cat ${{inputs.world_input}}/world.txt
+    environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu:23
+    compute: azureml:cpu-cluster
+    inputs:
+      world_input: ${{parent.jobs.hello_job.outputs.world_output}}
