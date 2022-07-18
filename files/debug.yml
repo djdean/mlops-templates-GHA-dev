@@ -5,12 +5,12 @@ jobs:
   hello_job:
     command: echo "hello" && echo "world" > ${{outputs.world_output}}/world.txt
     environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-    compute: azureml:cpu-cluster
+    compute: azureml:test
     outputs:
       world_output:
   world_job:
     command: cat ${{inputs.world_input}}/world.txt
     environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu:23
-    compute: azureml:cpu-cluster
+    compute: azureml:test
     inputs:
       world_input: ${{parent.jobs.hello_job.outputs.world_output}}
