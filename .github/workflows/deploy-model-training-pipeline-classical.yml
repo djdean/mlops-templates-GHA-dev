@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2
-    - name: Read test
+    - name: Read config
       uses: ./ # Uses an action in the root directory
       id: config-data
       with:
