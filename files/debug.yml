@@ -2,6 +2,17 @@ $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
 type: pipeline
 experiment_name: taxi-fare-training
 description: Training Pipeline to train a model that predicts taxi fare price
+inputs:
+  input: #using local data, will crate an anonymous data asset
+    type: uri_folder
+    path: ../../../data/
+
+outputs: 
+  prepared_data:
+  trained_model:
+  predictions:
+  score_report:
+  deploy_flag:
 jobs:
   hello_job:
     command: echo "hello" && echo "world" > ${{outputs.world_output}}/world.txt
