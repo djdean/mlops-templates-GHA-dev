@@ -1,4 +1,4 @@
-name: install_aml_cli
+name: TEST
 on: 
   workflow_call:
 jobs:
