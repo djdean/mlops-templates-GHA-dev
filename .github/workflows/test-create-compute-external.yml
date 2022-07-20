@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 jobs:
     run-compute-test:
-      uses: timwferro/TestExternalAction/.github/workflows/create-compute.yml@main
+      uses: Azure/mlops-templates/.github/workflows/create-compute.yml@main
       with:
         cluster_name: test
         size: Standard_D1_v2
