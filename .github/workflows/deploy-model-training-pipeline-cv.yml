@@ -1,4 +1,4 @@
-name: deploy-batch-endpoint-pipeline
+name: deploy-cv-model-training-pipeline
 
 on: 
   workflow_dispatch:
