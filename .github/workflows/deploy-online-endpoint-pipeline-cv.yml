@@ -13,7 +13,7 @@ jobs:
       with:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }} 
-        endpoint_file: online-endpoint-cv.yml
+        endpoint_file: cv/aml-cli-v2/mlops/azureml/deploy/online/online-endpoint-cv.yml
         endpoint_name: dogs-classifier-online
         endpoint_type: batch
       secrets:
@@ -24,7 +24,7 @@ jobs:
       with:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }} 
-        endpoint_file: online-deployment-cv.yml
+        endpoint_file: cv/aml-cli-v2/mlops/azureml/deploy/online/online-deployment-cv.yml
         endpoint_name: dogs-classifier-online
         endpoint_type: batch
         deployment_name: dogs-online-dp
