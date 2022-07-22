@@ -4,23 +4,12 @@ on:
   workflow_dispatch:
 jobs:
   get-config:
-    runs-on: ubuntu-latest
-    outputs:
-      resource_group: ${{  steps.config-data.outputs.resource_group }}
-      aml_workspace: ${{  steps.config-data.outputs.aml_workspace }}
-    steps:
-    - name: checkout
-      uses: actions/checkout@v2
-    - name: Read test
-      uses: ./ # Uses an action in the root directory
-      id: config-data
+      uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@main
       with:
-        config: ${{ github.workspace }}/files/config-infra-prod-test.yml
-    - name: Echo step output
-      run: echo " Loaded config! \n Resource Group ${{  steps.config-data.outputs.resource_group }} \n AML Workspace ${{  steps.config-data.outputs.aml_workspace }}\n"
+        file_name: config-infra-prod-test.yml
   create-endpoint:
       needs: get-config
-      uses: ./.github/workflows/create-endpoint.yml
+      uses: Azure/mlops-templates/.github/workflows/create-endpoint.yml@main
       with:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }} 
@@ -30,7 +19,7 @@ jobs:
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
   create-deployment:
-      uses: ./.github/workflows/create-deployment.yml
+      uses: Azure/mlops-templates/.github/workflows/create-deployment.yml@main
       needs: [get-config,create-endpoint]
       with:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
@@ -42,7 +31,7 @@ jobs:
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
   allocate-traffic:
-      uses: ./.github/workflows/allocate-traffic.yml
+      uses: Azure/mlops-templates/.github/workflows/allocate-traffic.yml@main
       needs: [get-config,create-deployment]
       with:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
