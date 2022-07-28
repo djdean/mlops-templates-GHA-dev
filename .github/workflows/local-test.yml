@@ -18,7 +18,7 @@ jobs:
       - name: create-compute
         id: test
         run: |
-          echo "::set-output name=test::$(az ml model list --resource-group DJMiscRG --workspace-name DemoMLWorkspace | jq .location)"
+          echo "::set-output name=test::$(az ml model list --resource-group DJMiscRG --workspace-name DemoMLWorkspace | jq .[].id)"
       - name: output
         run: |
           echo ${{ steps.test.outputs.test }}
