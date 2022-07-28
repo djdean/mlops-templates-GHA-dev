@@ -2,28 +2,6 @@ name: create-compute-test
 
 on: 
   workflow_dispatch:
-    inputs:
-      cluster_name:
-        required: true
-        type: string
-      size:  
-        required: true
-        type: string
-      min_instances: 
-        required: true
-        type: number
-      max_instances: 
-        required: true
-        type: number
-      resource_group:   
-        required: true
-        type: string
-      workspace_name:  
-        required: true
-        type: string
-    secrets:
-      creds:
-        required: true
 jobs:
   create-compute:
     runs-on: ubuntu-latest
@@ -31,7 +9,7 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          creds: ${{secrets.creds}}
+          creds:  ${{secrets.AZURE_CREDENTIALS}}
           enable-AzPSSession: true 
       - name: install-extension
         run:  az extension add -n ml -y
@@ -40,14 +18,7 @@ jobs:
       - name: create-compute
         id: test
         run: |
-          echo "::set-output name=test::$(az ml compute create --name ${{ inputs.cluster_name }} \
-                                  --type AmlCompute \
-                                  --size ${{ inputs.size }} \
-                                  --min-instances ${{ inputs.min_instances }} \
-                                  --max-instances ${{ inputs.max_instances }} \
-                                  --resource-group ${{ inputs.resource_group }} \
-                                  --workspace-name ${{ inputs.workspace_name }} | jq .location)"
+          echo "::set-output name=test::$(az ml model list --resource-group DJMiscRG --workspace-name DemoMLWorkspace | jq .location)"
       - name: output
         run: |
           echo ${{ steps.test.outputs.test }}
-          echo 
