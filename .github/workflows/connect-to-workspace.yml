@@ -2,7 +2,7 @@
 name: Connect to Workspace
 # Controls when the workflow will run
 on: 
-  workflow_call:
+  workflow_dispatch:
     inputs:
       resourceGroup:
         description: 'Resource Group'     
@@ -12,11 +12,6 @@ on:
         description: 'Workspace Name'     
         required: true
         type: string
-    secrets:
-      creds:
-        required: true
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 jobs:
   # This workflow contains a single job called "ConnectToWorkspace"
@@ -29,7 +24,7 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          creds: ${{secrets.creds}}
+          creds:  ${{secrets.AZURE_CREDENTIALS}}
           enable-AzPSSession: true 
       - name: install-extension
         run:  az extension add -n ml -y
