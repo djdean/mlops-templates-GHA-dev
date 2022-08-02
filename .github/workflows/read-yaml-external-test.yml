@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
     read-external-test:
-      uses:  Azure/mlops-templates/.github/workflows/read-yaml.yml@GHA-testing-jul31
+      uses:  Azure/mlops-templates/.github/workflows/read-yaml.yml@main-jul31
       with:
         file_name: files/config-infra-prod-test.yml
         
