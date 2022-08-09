@@ -2,9 +2,17 @@ name: read-yaml-external
 on: 
   workflow_dispatch:
 jobs:
-    read-external-test:
+    get-config:
       uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@GHA-testng-jul31
       with:
         file_name: files/config-infra-prod-test.yml
+    register-environment:
+      needs: get-config
+      runs-on: ubuntu-latest
+      steps:
+        - name: test-output
+          run: |
+            echo  ${{ format('{0}-eptest', needs.get-config.outputs.resource_group) }}
+        
         
         
