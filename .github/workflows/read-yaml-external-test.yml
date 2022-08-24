@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
     get-config:
-      uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@GHA-testng-jul31
+      uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@GHA-read-parsing-update
       with:
         file_name: files/config-infra-prod-test.yml
     register-environment:
