@@ -15,8 +15,8 @@ variables:
   ado_service_connection_aml_ws: Azure-ARM-Prod
 
   # IaC
-  resource_group: DJMiscRG
-  aml_workspace: DemoMLWorkspace
+  resource_group: $DJMiscRG
+  aml_workspace: $DemoMLWorkspace
   application_insights: mlw
   key_vault: kv
   container_registry: cr
