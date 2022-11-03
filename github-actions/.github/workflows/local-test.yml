@@ -2,7 +2,7 @@
 name: Test
 
 on: 
-  workflow_dispatch:
+  workflow_call:
 jobs:
   # This workflow contains a single job called "ConnectToWorkspace"
   ConnectToWorkspace:
