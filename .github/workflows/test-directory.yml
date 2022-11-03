@@ -1,0 +1,6 @@
+name: runTest
+on: 
+  workflow_dispatch:
+jobs:
+  run-dataset-test:    
+    uses: djdean/mlops-templates-GHA-dev/github-actions/.github/workflows/local-test.yml@main
