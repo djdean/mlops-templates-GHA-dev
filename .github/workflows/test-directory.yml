@@ -3,4 +3,4 @@ on:
   workflow_dispatch:
 jobs:
   run-dataset-test:    
-    uses: ./github-actions/.github/workflows/local-test.yml
+    uses: djdean/mlops-templates-GHA-dev/.github/workflows/test-directory-impl.yml@main
