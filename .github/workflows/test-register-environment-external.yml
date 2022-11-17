@@ -8,7 +8,7 @@ jobs:
       with:
         resource_group: DJMiscRG
         workspace_name: DemoMLWorkspace
-        environment_file: mlops/azureml/train/train-nlp.yaml
+        environment_file: files/train-nlp.yaml
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
         
