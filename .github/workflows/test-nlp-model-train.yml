@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
 jobs:
   get-config:
-      uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@main
+      uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@gha-nlp
       with:
         file_name: files/config-infra-prod-test.yml
   create-compute-standard:
       needs: get-config
-      uses: Azure/mlops-templates/.github/workflows/create-compute.yml@main
+      uses: Azure/mlops-templates/.github/workflows/create-compute.yml@gha-nlp
       with:
         cluster_name: cpu-cluster
         size: STANDARD_DS3_V2
@@ -21,7 +21,7 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
   create-compute-large:
       needs: get-config
-      uses: Azure/mlops-templates/.github/workflows/create-compute.yml@main
+      uses: Azure/mlops-templates/.github/workflows/create-compute.yml@gha-nlp
       with:
         cluster_name: cpu-cluster-lg
         size: Standard_D14_v2
@@ -33,7 +33,7 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
   create-compute-gpu:
       needs: get-config
-      uses: Azure/mlops-templates/.github/workflows/create-compute.yml@main
+      uses: Azure/mlops-templates/.github/workflows/create-compute.yml@gha-nlp
       with:
         cluster_name: gpu-cluster
         size: Standard_NC6
@@ -45,7 +45,7 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
   register-environment:
       needs: [get-config,create-compute-standard,create-compute-large,create-compute-gpu]
-      uses: Azure/mlops-templates/.github/workflows/register-environment.yml@main
+      uses: Azure/mlops-templates/.github/workflows/register-environment.yml@gha-nlp
       with:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }}     
@@ -54,7 +54,7 @@ jobs:
         creds: ${{secrets.AZURE_CREDENTIALS}}
   run-pipeline:
       needs: [get-config,create-compute-standard,create-compute-large,create-compute-gpu,register-environment]
-      uses: Azure/mlops-templates/.github/workflows/run-pipeline.yml@main
+      uses: Azure/mlops-templates/.github/workflows/run-pipeline.yml@gha-nlp
       with:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }}     
