@@ -6,7 +6,7 @@ jobs:
   get-config:
       uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@main
       with:
-        file_name: config-infra-prod.yml
+        file_name: files/config-infra-prod-test.yml
   create-compute-standard:
       needs: get-config
       uses: Azure/mlops-templates/.github/workflows/create-compute.yml@main
@@ -31,7 +31,7 @@ jobs:
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }}     
       secrets:
           creds: ${{secrets.AZURE_CREDENTIALS}}
-   create-compute-gpu:
+  create-compute-gpu:
       needs: get-config
       uses: Azure/mlops-templates/.github/workflows/create-compute.yml@main
       with:
@@ -43,7 +43,7 @@ jobs:
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }}     
       secrets:
           creds: ${{secrets.AZURE_CREDENTIALS}}
-   register-environment:
+  register-environment:
       needs: [get-config,create-compute-standard,create-compute-large,create-compute-gpu]
       uses: Azure/mlops-templates/.github/workflows/register-environment.yml@main
       with:
@@ -52,7 +52,7 @@ jobs:
         environment_file: nlp/azureml/train/train-env.yaml 
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-   run-pipeline:
+  run-pipeline:
       needs: [get-config,create-compute-standard,create-compute-large,create-compute-gpu,register-environment]
       uses: Azure/mlops-templates/.github/workflows/run-pipeline.yml@main
       with:
