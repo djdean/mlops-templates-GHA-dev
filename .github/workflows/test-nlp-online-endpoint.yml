@@ -1,4 +1,4 @@
-name: deploy-online-endpoint-pipeline
+name: deploy-online-endpoint-pipeline-nlp
 
 on: 
   workflow_dispatch:
