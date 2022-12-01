@@ -49,7 +49,7 @@ jobs:
       with:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }}     
-        environment_file: nlp-mlops/azureml/train/train-env.yaml 
+        environment_file: nlp/azureml/train/train-env.yaml 
       secrets:
         creds: ${{secrets.AZURE_CREDENTIALS}}
    run-pipeline:
@@ -58,7 +58,7 @@ jobs:
       with:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }}     
-        parameters-file:  nlp-mlops/azureml/train/pipeline.yml
+        parameters-file:  nlp/azureml/train/pipeline.yml
         job-name: nlp_summerization
       secrets:
           creds: ${{secrets.AZURE_CREDENTIALS}}
