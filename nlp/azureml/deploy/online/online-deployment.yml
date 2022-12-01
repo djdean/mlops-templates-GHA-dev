@@ -13,7 +13,7 @@ model: azureml:pubmed-summarization@latest
 
 # scoring code
 code_configuration:
-  code: ../../../../data-science/src/summarization/
+  code: ../../../../data-science-nlp/src/summarization/
   scoring_script: score.py
 
 # custom scoring environment
