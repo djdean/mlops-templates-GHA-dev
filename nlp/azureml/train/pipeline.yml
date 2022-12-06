@@ -112,7 +112,7 @@ jobs:
       --model_path ${{inputs.model_path}} 
       --max_target_length ${{inputs.max_target_length}} 
       --do_predict
-    environment: azureml:nlp_summarization_train@latest
+    environment: azureml:nlp_summarization_train_test@latest
     compute: azureml:gpu-cluster
     inputs:
       preprocessed_datasets: ${{parent.jobs.prep_finetuning_dataset.outputs.encodings}}
