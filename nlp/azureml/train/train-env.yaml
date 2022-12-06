@@ -1,5 +1,5 @@
 $schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
-name: nlp_summarization_train_test
+name: nlp_summarization_train_test2
 version: mlopsv2-july2022
 build:
   path: ../../../data-science-nlp/environments/training/
