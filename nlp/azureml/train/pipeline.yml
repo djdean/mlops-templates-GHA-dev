@@ -51,7 +51,7 @@ jobs:
       --max_target_length ${{inputs.max_target_length}} 
       --padding ${{inputs.padding}} 
       --encodings ${{outputs.encodings}}
-    environment: azureml:nlp_summarization_train@latest
+    environment: azureml:nlp_summarization_train_test2@latest
     compute: azureml:cpu-cluster-lg
     inputs:
       dataset_name: "ccdv/pubmed-summarization"
@@ -82,7 +82,7 @@ jobs:
       --output_dir outputs 
       --num_train_epochs ${{inputs.num_train_epochs}} 
       --do_train --do_eval 
-    environment: azureml:nlp_summarization_train@latest
+    environment: azureml:nlp_summarization_train_test2@latest
     inputs:
       preprocessed_datasets: ${{parent.jobs.prep_finetuning_dataset.outputs.encodings}}
       pretrained_model_name: ${{parent.inputs.pretrained_model_name}}
@@ -112,7 +112,7 @@ jobs:
       --model_path ${{inputs.model_path}} 
       --max_target_length ${{inputs.max_target_length}} 
       --do_predict
-    environment: azureml:nlp_summarization_train_test@latest
+    environment: azureml:nlp_summarization_train_test2@latest
     compute: azureml:gpu-cluster
     inputs:
       preprocessed_datasets: ${{parent.jobs.prep_finetuning_dataset.outputs.encodings}}
@@ -134,7 +134,7 @@ jobs:
       --model_name ${{inputs.model_name}} 
       --max_target_length ${{inputs.max_target_length}} 
       --do_predict
-    environment: azureml:nlp_summarization_train@latest
+    environment: azureml:nlp_summarization_train_test2@latest
     compute: azureml:gpu-cluster
     inputs:
       preprocessed_datasets: ${{parent.jobs.prep_finetuning_dataset.outputs.encodings}}
