@@ -36,7 +36,7 @@ jobs:
       uses: Azure/mlops-templates/.github/workflows/create-compute.yml@gha-nlp
       with:
         cluster_name: gpu-cluster
-        size: Standard_NC6
+        size: Standard_NV6
         cluster_tier: low_priority
         min_instances: 0
         max_instances: 1
