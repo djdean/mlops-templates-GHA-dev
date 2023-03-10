@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
     get-config:
-      uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@GHA-read-vulnerability-update
+      uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@GHA-save-state-fix
       with:
         file_name: files/config-infra-prod-test.yml
     register-environment:
